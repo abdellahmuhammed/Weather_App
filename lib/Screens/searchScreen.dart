@@ -8,11 +8,11 @@ import 'package:weather_app/shared/Component.dart';
 import 'package:weather_app/shared/constant.dart';
 
 class SearchScreen extends StatelessWidget {
-  const SearchScreen({super.key});
+  SearchScreen({super.key});
+  final TextEditingController cityController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController cityController = TextEditingController();
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return SafeArea(
       child: Scaffold(
@@ -60,9 +60,13 @@ class SearchScreen extends StatelessWidget {
                   },
                   onFieldSubmitted: (cityName) async {
                     if (formKey.currentState!.validate()) {
-                      navigateAndRemove(context, HomeScreen());
-                      await BlocProvider.of<WeatherCubit>(context)
-                          .getCurrentWeather(cityName: cityName);
+                      try {
+                        navigateAndRemove(context, HomeScreen());
+                       
+                        await BlocProvider.of<WeatherCubit>(context)
+                            .getCurrentWeather(cityName: cityName);
+                      } on Exception catch (e) {
+                        print(e.toString());}
                     }
                   },
                 ),
@@ -92,94 +96,10 @@ class SearchScreen extends StatelessWidget {
     );
   }
 
-// Widget buildSearchScreen(
-//   BuildContext context,
-//   TextEditingController cityController,
-//   GlobalKey<FormState> formKey,
-// ) {
-//   return Form(
-//     key: formKey,
-//     child: SingleChildScrollView(
-//       padding: const EdgeInsets.all(20),
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           Text(
-//             'Please Search About City to show weather',
-//             style: Theme.of(context).textTheme.titleMedium,
-//           ),
-//           Center(
-//             child: Image.asset(
-//               'assets/images/search.png',
-//               height: 300,
-//             ),
-//           ),
-//           const SizedBox(height: 20),
-//           buildTextFormField(cityController, context, formKey),
-//           const SizedBox(height: 80),
-//           buildSearchButton(context, cityController, formKey),
-//         ],
-//       ),
-//     ),
-//   );
-// }
-
-// Widget buildTextFormField(TextEditingController cityController,
-//     BuildContext context, GlobalKey<FormState> formKey) {
-//   return TextFormField(
-//     controller: cityController,
-//     decoration: InputDecoration(
-//         contentPadding: const EdgeInsets.all(20),
-//         labelText: 'Enter City Name',
-//         suffixIcon: Icon(Icons.search)),
-//     onFieldSubmitted: (cityName) async {
-//       WeatherServices().getCurrentWeather(cityName: cityName);
-//     },
-//     validator: (value) => buildValidate(value, cityController),
-//   );
-// }
-
-// Future<String> translateCityName(String cityName) async {
-//   final translator = GoogleTranslator();
-//   final translation =
-//   await translator.translate(cityName, from: 'ar', to: 'en');
-//   return translation.text;
-// }
-/*
-*
-*
-* */
-// String? buildValidate(
-//     String? cityName, TextEditingController cityController) {
-//   if (cityName == null || cityName.isEmpty || cityController.text.isEmpty) {
-//     return 'Please Enter City name';
-//   }
-//   return null;
-// }
-/*
-*
-*
-* */
-// AppBar buildAppBar(BuildContext context) {
-//   return AppBar(
-//     title: Text(
-//       'Search City',
-//       style: Theme.of(context).textTheme.titleLarge,
-//     ),
-//   );
-// }
-/**/
-// Widget buildSearchButton(BuildContext context,
-//     TextEditingController cityController, GlobalKey<FormState> formKey) {
-//   return Center(
-//     child: TextButton(
-//       onPressed: () async {
-//         if (formKey.currentState!.validate()) {
-//           await WeatherServices().getCurrentWeather(cityName: 'cairo');
-//         }
-//       },
-//       child: const Text('Search'),
-//     ),
-//   );
-// }
+  /*Future<String> _translateCityName({required String cityName}) async {
+    final translator = GoogleTranslator();
+    final translation =
+        await translator.translate(cityName, from: 'ar', to: 'en');
+    return translation.text;
+  }*/
 }

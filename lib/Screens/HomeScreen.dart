@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
       body: BlocBuilder<WeatherCubit, WeatherState>(
         builder: (context, state) {
           if (state is WeatherInitialState) {
-            return const SearchScreen();
+            return  SearchScreen();
           } else if (state is WeatherISLoadingState) {
             return _buildLoadingState(context);
           } else if (state is WeatherLoadedState) {
@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget _buildErrorState(BuildContext context) {
     Future.delayed(const Duration(seconds: 4), () {
-      navigateAndRemove(context, const SearchScreen());
+      navigateAndRemove(context,  SearchScreen());
     });
 
     return Container(

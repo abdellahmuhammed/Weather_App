@@ -61,7 +61,7 @@ class WeatherInfoBody extends StatelessWidget {
         IconButton(
           color: Colors.black,
           onPressed: () {
-            navigateToAndPush(context, const SearchScreen());
+            navigateToAndPush(context,  SearchScreen());
           },
           icon: const Icon(Icons.search),
         ),
