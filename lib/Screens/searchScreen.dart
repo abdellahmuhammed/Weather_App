@@ -3,9 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/Screens/HomeScreen.dart';
-import 'package:weather_app/Screens/weatherInfoBody.dart';
 import 'package:weather_app/cubits/WeatherCubit/WeatherCubit.dart';
-import 'package:weather_app/model/weatherModel.dart';
 import 'package:weather_app/shared/Component.dart';
 import 'package:weather_app/shared/constant.dart';
 
@@ -17,7 +15,6 @@ class SearchScreen extends StatelessWidget {
     final TextEditingController cityController = TextEditingController();
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return SafeArea(
-      maintainBottomViewPadding: true,
       child: Scaffold(
         backgroundColor: kPrimaryColor,
         body: Form(
@@ -43,7 +40,7 @@ class SearchScreen extends StatelessWidget {
                     height: 300,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 TextFormField(
                   controller: cityController,
                   decoration: InputDecoration(
@@ -64,13 +61,12 @@ class SearchScreen extends StatelessWidget {
                   onFieldSubmitted: (cityName) async {
                     if (formKey.currentState!.validate()) {
                       navigateAndRemove(context, HomeScreen());
-
-                      await BlocProvider.of<WeatherCubit>(context).getCurrentWeather(cityName: cityName);
-
+                      await BlocProvider.of<WeatherCubit>(context)
+                          .getCurrentWeather(cityName: cityName);
                     }
                   },
                 ),
-                const SizedBox(height: 80),
+                const SizedBox(height: 40),
                 Center(
                   child: MaterialButton(
                     height: 40,
