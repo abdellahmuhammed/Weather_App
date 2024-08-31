@@ -4,7 +4,7 @@ class WeatherModel {
   final String cityName;
   final String countryName;
   final DateTime date;
-  final String image;
+  final dynamic image;
   final String weatherState;
   final double temp;
   final double maxTemp;

@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
           } else if (state is WeatherISLoadingState) {
             return _buildLoadingState(context);
           } else if (state is WeatherLoadedState) {
-            return const WeatherInfoBody();
+            return  WeatherInfoBody();
           } else {
             return _buildErrorState(context);
           }

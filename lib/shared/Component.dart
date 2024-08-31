@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void navigateToAndPush(BuildContext context , Widget widget ) {
+void navigateToAndPush(BuildContext context, Widget widget) {
   Navigator.of(context).push(
     MaterialPageRoute(
       builder: (context) => widget,
@@ -8,16 +8,16 @@ void navigateToAndPush(BuildContext context , Widget widget ) {
   );
 }
 
-
-void navigateAndRemove(BuildContext context , Widget widget) {
-  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=> widget), (route)=>false);
+void navigateAndRemove(BuildContext context, Widget widget) {
+  Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => widget), (route) => false);
 }
 
 Text buildText(BuildContext context, {required String text}) => Text(
-  text,
-  style: Theme.of(context).textTheme.titleLarge,
-);
-
+      text,
+      style: TextStyle(
+          color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
+    );
 
 MaterialColor getCurrentThemeColor({required String? condition}) {
   if (condition == null) {

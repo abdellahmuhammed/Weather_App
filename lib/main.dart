@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/Screens/HomeScreen.dart';
-import 'package:weather_app/Screens/searchScreen.dart';
 import 'package:weather_app/cubits/WeatherCubit/WeatherCubit.dart';
 
 void main() {
