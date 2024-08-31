@@ -14,7 +14,7 @@ class WeatherInfoBody extends StatelessWidget {
     var weatherCubit = BlocProvider.of<WeatherCubit>(context).weatherModel!;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: kPrimaryColor,
+        backgroundColor: getCurrentThemeColor(condition: '${weatherCubit.weatherState}'),
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(15),
@@ -54,9 +54,9 @@ class WeatherInfoBody extends StatelessWidget {
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
-                        Colors.blueGrey[500]!,
-                        Colors.blueGrey[200]!,
-                        Colors.blueGrey[50]!,
+                        getCurrentThemeColor(condition: '${weatherCubit.weatherState}')[200]!,
+                        getCurrentThemeColor(condition: '${weatherCubit.weatherState}')[100]!,
+                        getCurrentThemeColor(condition: '${weatherCubit.weatherState}')[50]!,
                       ],
                     ),
                   ),
@@ -125,10 +125,10 @@ class WeatherInfoBody extends StatelessWidget {
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            Colors.blueGrey[500]!,
-                            Colors.blueGrey[200]!,
-                            Colors.blueGrey[50]!,
-                          ])),
+                            getCurrentThemeColor(condition: '${weatherCubit.weatherState}')[400]!,
+                            getCurrentThemeColor(condition: '${weatherCubit.weatherState}')[200]!,
+                            getCurrentThemeColor(condition: '${weatherCubit.weatherState}')[50]!,
+                          ],),),
                   child: ListView.builder(
                     itemCount: weatherCubit.hourlyWeatherList.length,
                     scrollDirection: Axis.horizontal,
@@ -182,7 +182,7 @@ class WeatherInfoBody extends StatelessWidget {
   }
 
   buildSizedBox(BuildContext context) => SizedBox(
-        height: MediaQuery.of(context).size.height * .035,
+        height: MediaQuery.of(context).size.height * .025,
       );
 
 
