@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildErrorState(BuildContext context) {
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 4), () {
       navigateAndRemove(context, const SearchScreen());
     });
 

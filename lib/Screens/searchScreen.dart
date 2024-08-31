@@ -75,9 +75,11 @@ class SearchScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8)),
                     color: kButtonColor,
                     onPressed: () async {
-                      // WeatherModel weatherModel = await WeatherServices()
-                      //     .getCurrentWeather(cityName: cityController.text);
-                      // print(weatherModel.cityName);
+                      if (formKey.currentState!.validate()) {
+                        navigateAndRemove(context, HomeScreen());
+                        await BlocProvider.of<WeatherCubit>(context)
+                            .getCurrentWeather(cityName: cityController.text);
+                      }
                     },
                     child: const Text('Search'),
                   ),
