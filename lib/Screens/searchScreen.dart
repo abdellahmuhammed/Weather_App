@@ -53,7 +53,7 @@ class SearchScreen extends StatelessWidget {
                   validator: (value) {
                     if (value == null ||
                         value.isEmpty ||
-                        cityController.text.isEmpty) {
+                        cityController.text.isEmpty || value.trim().isEmpty) {
                       return 'Please Enter City name';
                     }
                     return null;

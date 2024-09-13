@@ -72,43 +72,30 @@ class WeatherInfoBody extends StatelessWidget {
   // to build image check temp and return image
   _buildImage(context, {double height = 100}) {
     var weatherCubit = BlocProvider.of<WeatherCubit>(context).weatherModel!;
-    return weatherCubit.weatherState == 'Patchy snow possible' ||
-            weatherCubit.weatherState == 'Snow'
-        ? Image.asset(
-            'assets/images/snow.png',
-            height: height,
-          )
-        : weatherCubit.weatherState == 'Clear' ||
-                weatherCubit.weatherState == 'Sunny'
-            ? Image.asset(
-                'assets/images/clear.png',
-                height: height,
-              )
-            : weatherCubit.weatherState == 'Partly cloudy' ||
-                    weatherCubit.weatherState == 'Overcast' ||
-                    weatherCubit.weatherState == 'Cloudy'
-                ? Image.asset(
-                    'assets/images/cloudy.png',
-                    height: height,
-                  )
-                : weatherCubit.weatherState == 'Thunderstorm' ||
-                        weatherCubit.weatherState ==
-                            'Thundery outbreaks possible'
-                    ? Image.asset(
-                        'assets/images/thunderstorm.png',
-                        height: height,
-                      )
-                    : weatherCubit.weatherState == 'Rainy' ||
-                            weatherCubit.weatherState == 'Patchy rain possible'
-                        ? Image.asset(
-                            'assets/images/rainy.png',
-                            height: height,
-                          )
-                        : Image.asset(
-                            'assets/images/cloudy.png',
-                            height: height,
-                          );
+    double temperature = weatherCubit.temp; // الحصول على درجة الحرارة
+
+    // تحديد الصورة بناءً على درجة الحرارة
+    String imagePath;
+
+    if (temperature <= 0) {
+      imagePath = 'assets/images/snow.png'; // ثلج
+    } else if (temperature > 0 && temperature <= 10) {
+      imagePath = 'assets/images/rain.png'; // مطر
+    } else if (temperature > 10 && temperature <= 20) {
+      imagePath = 'assets/images/thunderstorm.png'; // غيوم
+    } else if (temperature > 20 && temperature <= 30) {
+      imagePath = 'assets/images/cloudy.png'; // عواصف رعدية
+    } else if (temperature > 30) {
+      imagePath = 'assets/images/clear.png'; // صافٍ
+    } else {
+      return Container(); // في حالة لم تطابق أي شرط
+    }
+    return Image.asset(
+      imagePath,
+      height: height,
+    );
   }
+
 
   Widget _buildWeatherContainer(BuildContext context, weatherCubit) {
     return Container(

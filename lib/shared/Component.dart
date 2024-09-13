@@ -21,39 +21,39 @@ Text buildText(BuildContext context, {required String text}) => Text(
 
 MaterialColor getCurrentThemeColor({required String? condition}) {
   if (condition == null) {
-    return Colors.blueGrey;
+    return Colors.blueGrey; // حالة افتراضية إذا كانت الحالة غير معروفة
   }
 
   switch (condition) {
     case "Sunny":
     case "Clear":
-      return Colors.amber;
+      return Colors.orange; // برتقالي يعكس الجو الحار والمشمس
 
     case "Partly cloudy":
     case "Overcast":
     case "Cloudy":
-      return Colors.blueGrey;
+      return Colors.blueGrey; // أزرق رمادي يعكس الجو الغائم
 
     case "Mist":
-      return Colors.cyan;
+      return Colors.grey; // رمادي يعكس الأجواء الضبابية
 
     case "Patchy rain possible":
     case "Rainy":
-      return Colors.blue;
+      return Colors.blue; // أزرق يعكس الأمطار
 
     case "Patchy snow possible":
     case "Snow":
-      return Colors.indigo;
+      return Colors.lightBlue; // أزرق فاتح يعكس الثلوج والبرد
 
     case "Patchy sleet possible":
     case "Patchy freezing drizzle possible":
-      return Colors.teal;
+      return Colors.teal; // لون بارد يعكس الأمطار المتجمدة
 
     case "Thundery outbreaks possible":
     case "Thunderstorm":
-      return Colors.deepPurple;
+      return Colors.deepPurple; // بنفسجي غامق يعكس العواصف
 
     default:
-      return Colors.blue;
+      return Colors.blue; // الأزرق للحالات الأخرى
   }
 }
