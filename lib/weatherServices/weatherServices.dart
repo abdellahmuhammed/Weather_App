@@ -20,7 +20,7 @@ class WeatherServices {
     } on DioException catch (error) {
       // لو في مشاكل من ال dio
       final String errorMessage = error.response?.data['error']['message'] ??
-          'Web services pleas retry later';
+          'error in Web services pleas retry later';
       throw Exception(
           'Error happened while getting Api from Server And Error in : $errorMessage \n Error Exception : ${error.toString()}');
     } catch (error) {

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/cubits/WeatherCubit/WeatherState.dart';
 import 'package:weather_app/model/weatherModel.dart';
@@ -12,9 +13,10 @@ class WeatherCubit extends Cubit<WeatherState> {
       emit(WeatherISLoadingState());
       weatherModel =
           await WeatherServices().getCurrentWeather(cityName: cityName);
-      print(weatherModel!.cityName);
+      debugPrint('fetch data successfully');
+      debugPrint(weatherModel!.cityName);
       emit(WeatherLoadedState());
-    }on Exception catch (error) {
+    } on Exception catch (error) {
       print(
           'An error happened when creating Cubit and error is ${error.toString()}');
       emit(WeatherFiledState(error: error.toString()));
